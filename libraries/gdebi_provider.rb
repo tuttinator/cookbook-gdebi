@@ -7,10 +7,8 @@ class Chef
         def install_package(name, version)
           opts = @new_resource.options ? "--option='#{@new_resource.options}'" : ""
           shell_out!(
-            :command => "gdebi --quiet --non-interactive #{opts} #{@new_resource.source}",
-            :environment => {
-                "DEBIAN_FRONTEND" => "noninteractive"
-              }
+            "gdebi --quiet --non-interactive #{opts} #{@new_resource.source}",
+            environment: { "DEBIAN_FRONTEND" => "noninteractive" }
             )
         end
       end
